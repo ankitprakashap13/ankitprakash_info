@@ -9,7 +9,7 @@ module.exports = {
   deploy : {
     production : {
        "user" : "root",
-       "host" : ["143.110.177.113"],
+       "host" : ["ankitprakash.info"],
        "ref"  : "main",
        "repo" : "git@github.com:ankitprakashap13/ankitprakash_info.git",
        "path" : "/var/www/ankitprakash_info",
