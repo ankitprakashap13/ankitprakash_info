@@ -14,7 +14,7 @@ module.exports = {
        "ref"  : "main",
        "repo" : "git@github.com:ankitprakashap13/ankitprakash_info.git",
        "path" : "/var/www/ankitprakash_info",
-       "post-deploy" : "pm2 startOrRestart ecosystem.config.js --env production"
+       "post-deploy" : "npm install; pm2 startOrRestart ecosystem.config.js --env production"
     }
   }
 }
