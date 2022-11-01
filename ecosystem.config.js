@@ -1,7 +1,7 @@
 module.exports = {
   apps : [{
     name   : "ankitprakash_info",
-    script : "./app.js",
+    script : "./ecosystem.config.js",
     env_production : {
       NODE_ENV : "production",
     }
