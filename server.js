@@ -5,19 +5,8 @@ const path = require("path");
 const PORT = process.env.PORT || 5000;
 
 const server = require('http').Server(app);
-const cors = require('cors');
 
-app.use(cors());
-
-const socketIO = require('socket.io')(server, {
-  cors: {
-      origin: "http://localhost:3000"
-  }
-});
-
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
-});
+const socketIO = require('socket.io')(server);
 
 let users = []; // {userName, socketId}
 socketIO.on('connection', (socket) => {
