@@ -1,6 +1,7 @@
 module.exports = {
   apps : [{
     name   : "ankitprakash_info",
+    script : "server.js",
     env_production : {
       NODE_ENV : "production",
     }
