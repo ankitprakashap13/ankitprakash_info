@@ -18,7 +18,9 @@ const ChatMessages = ({messages}) => {
   }, [messages]);
 
   return <List sx={{
-      height: '50vh',
+      minHeight: '20vh',
+      maxHeight: '50vh',
+      width: '380px',
       overflowY: 'auto'
     }}>
     {messages?.map((message, index) => {

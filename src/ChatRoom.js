@@ -87,6 +87,7 @@ const ChatRoom = ({socket}) => {
                 }}
                 name="userName"
                 label="Your Name"
+                autoComplete="off"
                 autoFocus
               />
               <Button

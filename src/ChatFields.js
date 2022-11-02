@@ -40,9 +40,6 @@ const ChatFields = ({socket}) => {
             name="message"
             autoComplete="off"
             autoFocus
-            sx={{
-              minWidth: 500
-            }}
           />
           <Button
             type="submit"
