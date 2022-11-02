@@ -6,7 +6,9 @@ const PORT = process.env.PORT || 5000;
 
 const server = require('http').Server(app);
 
-const socketIO = require('socket.io')(server);
+const socketIO = require('socket.io')(server, {
+  path: '/chatsocket'
+});
 
 let users = []; // {userName, socketId}
 socketIO.on('connection', (socket) => {

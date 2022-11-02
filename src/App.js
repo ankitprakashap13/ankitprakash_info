@@ -9,7 +9,9 @@ import ChatRoom from './ChatRoom';
 import socketIO from 'socket.io-client';
 import { Grid } from '@mui/material';
 
-const socket = socketIO.connect('https://ankitprakash.info');
+const socket = socketIO.connect('https://ankitprakash.info', {
+  path: '/chatsocket'
+});
 // const socket = socketIO.connect('http://localhost:3000');
 
 function App() {
