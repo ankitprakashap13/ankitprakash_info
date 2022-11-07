@@ -6,10 +6,10 @@ import ChatMessages from './ChatMessages';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import socketIO from 'socket.io-client';
 
-// const socket = socketIO.connect('https://ankitprakash.info', {
-//   path: '/chatsocket'
-// });
-const socket = socketIO.connect('http://localhost:3000');
+const socket = socketIO.connect('https://ankitprakash.info', {
+  path: '/chatsocket'
+});
+// const socket = socketIO.connect('http://localhost:3000');
 
 const ChatRoom = () => {
   socket.on('connect', () => {localStorage.setItem('socketId', socket.id)});
@@ -28,7 +28,7 @@ const ChatRoom = () => {
       position: 'absolute',
       bottom: 16,
       right: 16
-    },
+    }
   };
 
   const onUserSubmit = (event) => {

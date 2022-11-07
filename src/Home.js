@@ -52,17 +52,17 @@ const Home = () => {
         direction="column"
         alignItems="center"
         justifyContent="center"
-        mt={20}
+        mt={10}
       >
         <Stack direction="column" spacing={2} alignItems="center">
-          <Typography variant="h4">WHO AM I?</Typography>
+          <Typography variant="h4" mb={5}>WHO AM I?</Typography>
           <Typography variant="p" mt={10}>A well rounded Full Stack developer</Typography>
           <Typography variant="p" mt={10}>AIML Enthusiast</Typography>
           <Typography variant="p" mt={10}>A curious musician</Typography>
           <Typography variant="p" mt={10}>A hardcore Gamer</Typography>
           <Typography variant="p" mt={10}></Typography>
             
-          <Typography variant="h6" padding={10}>Find out more <Link underline="none" rel="noopener" target="_blank" href="https://docs.google.com/document/d/1JqTxAiJqapYk-NC5dPnOgQGvhmhfsMA2nQRXpEU3lug/edit?usp=sharing" title="CV icons">
+          <Typography variant="h6" padding={5}>Find out more <Link underline="none" rel="noopener" target="_blank" href="https://docs.google.com/document/d/1JqTxAiJqapYk-NC5dPnOgQGvhmhfsMA2nQRXpEU3lug/edit?usp=sharing" title="CV icons">
             <DescriptionIcon />
             <span>Resume</span>
           </Link>, and let's get in touch</Typography>
