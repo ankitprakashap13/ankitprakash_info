@@ -38,10 +38,13 @@ const Home = () => {
           backgroundRepeat: 'no-repeat'
         }}
       >
-        <Stack direction="row" spacing={5} alignItems="center">
+        <Stack
+          direction={{ xs: 'column', sm: 'row' }}
+          spacing={{ xs: 1, sm: 5, md: 4 }}        
+          alignItems="center"
+        >
           <Typography variant="h5">Hi, I'm</Typography>
-          <Typography variant="h3">ANKIT PRAKASH</Typography>
-          
+          <Typography variant="h3" textAlign="center">ANKIT PRAKASH</Typography>
         </Stack>
       </Grid>
       <Grid
@@ -59,7 +62,7 @@ const Home = () => {
           <Typography variant="p" mt={10}>A hardcore Gamer</Typography>
           <Typography variant="p" mt={10}></Typography>
             
-          <Typography variant="h6">Find out more <Link underline="none" rel="noopener" target="_blank" href="https://docs.google.com/document/d/1JqTxAiJqapYk-NC5dPnOgQGvhmhfsMA2nQRXpEU3lug/edit?usp=sharing" title="CV icons">
+          <Typography variant="h6" padding={10}>Find out more <Link underline="none" rel="noopener" target="_blank" href="https://docs.google.com/document/d/1JqTxAiJqapYk-NC5dPnOgQGvhmhfsMA2nQRXpEU3lug/edit?usp=sharing" title="CV icons">
             <DescriptionIcon />
             <span>Resume</span>
           </Link>, and let's get in touch</Typography>
