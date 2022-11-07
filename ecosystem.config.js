@@ -11,7 +11,7 @@ module.exports = {
     production : {
        "user" : "root",
        "host" : ["ankitprakash.info"],
-       "ref"  : "main",
+       "ref"  : "origin/main",
        "repo" : "git@github.com:ankitprakashap13/ankitprakash_info.git",
        "path" : "/var/www/ankitprakash_info",
        "post-setup" : "",
