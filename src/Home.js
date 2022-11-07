@@ -20,7 +20,7 @@ const Home = () => {
         minHeight: '100vh',
         color: '#fff',
         backgroundColor: `#4158D0`,
-        backgroundImage: 'linear-gradient(to top, #ff9800 0%, rgb(2 156 176) 100%)'
+        backgroundImage: 'linear-gradient(to top, #4caf50 0%, #9c27b0  100%)'
       }}
     >
       <Grid
