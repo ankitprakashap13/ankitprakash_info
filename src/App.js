@@ -6,29 +6,20 @@ import '@fontsource/roboto/700.css';
 
 import Home from './Home';
 import ChatRoom from './ChatRoom';
-import socketIO from 'socket.io-client';
-import { Grid } from '@mui/material';
-
-const socket = socketIO.connect('https://ankitprakash.info', {
-  path: '/chatsocket'
-});
-// const socket = socketIO.connect('http://localhost:3000');
+import { Suspense } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
-  socket.on('connect', () => {localStorage.setItem('socketId', socket.id)});
 
   return (
-    <Grid
-      container
-      spacing={0}
-      direction="column"
-      alignItems="center"
-      justifyContent="center"
-      style={{ minHeight: '100vh' }}
-    >
-      <Home />
-      <ChatRoom socket={socket} />
-    </Grid>
+    <Router>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/chatroom" element={<ChatRoom />} />
+        </Routes>
+      </Suspense>
+    </Router>
   );
 }
 

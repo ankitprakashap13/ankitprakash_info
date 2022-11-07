@@ -4,8 +4,15 @@ import { useEffect, useState } from 'react';
 import ChatFields from './ChatFields';
 import ChatMessages from './ChatMessages';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import socketIO from 'socket.io-client';
 
-const ChatRoom = ({socket}) => {
+// const socket = socketIO.connect('https://ankitprakash.info', {
+//   path: '/chatsocket'
+// });
+const socket = socketIO.connect('http://localhost:3000');
+
+const ChatRoom = () => {
+  socket.on('connect', () => {localStorage.setItem('socketId', socket.id)});
   const [messages, setMessages] = useState([]);
   const [chatRoomOpen, setCharRoomOpen] = useState(false);
   const [userNameInputOpen, setuserNameInputOpen] = useState(false);
