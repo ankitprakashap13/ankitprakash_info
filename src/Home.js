@@ -17,7 +17,7 @@ const Home = () => {
       alignItems="center"
       justifyContent="center"
       style={{
-        height: '100vh',
+        minHeight: '100vh',
         color: '#fff',
         backgroundColor: `#4158D0`,
         backgroundImage: 'linear-gradient(to top, #ff9800 0%, rgb(2 156 176) 100%)'
@@ -41,12 +41,29 @@ const Home = () => {
         <Stack direction="row" spacing={5} alignItems="center">
           <Typography variant="h5">Hi, I'm</Typography>
           <Typography variant="h3">ANKIT PRAKASH</Typography>
-          {/* <Link underline="none" rel="noopener" target="_blank" href="https://docs.google.com/document/d/1JqTxAiJqapYk-NC5dPnOgQGvhmhfsMA2nQRXpEU3lug/edit?usp=sharing" title="CV icons">
-            <Stack direction="row" spacing={1}>
-              <DescriptionIcon />
-              <span>Resume</span>
-            </Stack>
-          </Link> */}
+          
+        </Stack>
+      </Grid>
+      <Grid
+        container
+        direction="column"
+        alignItems="center"
+        justifyContent="center"
+        mt={20}
+      >
+        <Stack direction="column" spacing={2} alignItems="center">
+          <Typography variant="h4">WHO AM I?</Typography>
+          <Typography variant="p" mt={10}>A well rounded Full Stack developer</Typography>
+          <Typography variant="p" mt={10}>AIML Enthusiast</Typography>
+          <Typography variant="p" mt={10}>A curious musician</Typography>
+          <Typography variant="p" mt={10}>A hardcore Gamer</Typography>
+          <Typography variant="p" mt={10}></Typography>
+            
+          <Typography variant="h6">Find out more <Link underline="none" rel="noopener" target="_blank" href="https://docs.google.com/document/d/1JqTxAiJqapYk-NC5dPnOgQGvhmhfsMA2nQRXpEU3lug/edit?usp=sharing" title="CV icons">
+            <DescriptionIcon />
+            <span>Resume</span>
+          </Link>, and let's get in touch</Typography>
+
         </Stack>
       </Grid>
     </Grid>
