@@ -4,6 +4,7 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
+import React from 'react';
 import Home from './Home';
 import ChatRoom from './ChatRoom';
 import { Suspense } from 'react';

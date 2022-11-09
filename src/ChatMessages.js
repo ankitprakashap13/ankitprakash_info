@@ -1,11 +1,9 @@
+import React, { useEffect, useRef } from "react";
 import {
-  Card,
   List,
   ListItem,
-  ListItemAvatar,
   ListItemText
 } from "@mui/material";
-import { useEffect, useRef } from "react";
 
 const ChatMessages = ({messages}) => {
   const userName = localStorage.getItem('userName');
@@ -23,7 +21,7 @@ const ChatMessages = ({messages}) => {
       width: '380px',
       overflowY: 'auto'
     }}>
-    {messages?.map((message, index) => {
+    {messages && messages.map((message, index) => {
       return <ListItem key={index}>
         <ListItemText
           primary={message.message}
