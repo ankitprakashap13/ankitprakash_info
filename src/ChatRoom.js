@@ -1,128 +1,51 @@
-import React from 'react';
-import { Button, Card, Collapse, Fab, Grid, Switch, TextField } from '@mui/material';
-import { Box, Stack } from '@mui/system';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Button, Grid, LinearProgress } from '@mui/material';
 import ChatFields from './ChatFields';
 import ChatMessages from './ChatMessages';
-import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import socketIO from 'socket.io-client';
+import ChatUsers from './ChatUsers';
 
-const socket = socketIO.connect('https://ankitprakash.info', {
+const socket = socketIO.connect(process.env.REACT_APP_CHAT_DOMAIN, {
   path: '/chatsocket'
 });
-// const socket = socketIO.connect('http://localhost:3000');
 
 const ChatRoom = () => {
-  socket.on('connect', () => {localStorage.setItem('socketId', socket.id)});
-  const [messages, setMessages] = useState([]);
-  const [chatRoomOpen, setCharRoomOpen] = useState(false);
-  const [userNameInputOpen, setuserNameInputOpen] = useState(false);
-  const [joinChatRoomButton, setJoinChatRoomButton] = useState(true);
-  const [showRoom, setShowRoom] =useState(true);
-
+  const [chatConnected, setChatConnected] = useState(false);
   useEffect(() => {
-    socket.on('messageResponse', (message, userName) => setMessages([...messages, {message, name: userName}]));
-  }, [socket, messages]);
+    socket.on('connect', () => {
+      setChatConnected(true)
+    });
+  }, [socket, chatConnected]);
 
-  const fab = {
-    sx: {
-      position: 'fixed',
-      bottom: 16,
-      right: 16
-    }
-  };
-
-  const onUserSubmit = (event) => {
-    event.preventDefault();
-
-    const formData = new FormData(event.target);
-    const userName = formData.get('userName');
-    
-    localStorage.setItem('userName', userName);
-    socket.emit('newUser', userName);
-
-    setJoinChatRoomButton(false);
-    setuserNameInputOpen(false);
-    setCharRoomOpen(true);
-
-    event.target.reset();
-  };
-
-  const openJoinRoom = () => {
-    setJoinChatRoomButton(false);
-    setuserNameInputOpen(true);
-    setCharRoomOpen(false);
-  };
-
-  return <Grid sx={fab.sx}>
-    <Card
-      variant="elevation"
-      elevation={24}
-      square
-      
-    >
-        {joinChatRoomButton &&
-          <Fab
-            variant="extended"
-            sx={{
-              position: 'absolute',
-              bottom: 50,
-              right: 50,
-              width: 250
-            }}
-            onClick={openJoinRoom}
-          >
-            <Stack direction="row" spacing={1}>
-              <PersonAddIcon />
-              <div>Join my Chatroom</div>
-            </Stack>
-          </Fab>
-        }
-        {userNameInputOpen &&
-          <Box
-            component="form"
-            variant="extended"
-            sx={{
-              position: 'absolute',
-              bottom: 50,
-              right: 50,
-            }}
-            noValidate
-            onSubmit={onUserSubmit}
-          >
-            <Stack
-              direction="row"
-              spacing={1}
-            >
-              <TextField
-                sx={{
-                  width: 250
-                }}
-                name="userName"
-                label="Your Name"
-                autoComplete="off"
-                autoFocus
-              />
-              <Button
-                type="submit"
-                variant="outlined"
-              >
-                <PersonAddIcon />
-              </Button>
-            </Stack>
-          </Box>
-        }
-        {
-          chatRoomOpen && <>
-            <Switch checked={showRoom} onChange={() => setShowRoom(!showRoom)} />
-            <Collapse direction="up" in={showRoom} mountOnEnter unmountOnExit>
-              <ChatMessages messages={messages} />
-              <ChatFields socket={socket} />
-            </Collapse>
-          </>
-        }
-    </Card>
-  </Grid>;
+  return (
+    <>
+      <Button
+        href='/'
+        variant="outlined" color="error"
+        sx={{
+          position: {sm: 'fixed', xs: 'relative'},
+          zIndex: "1",
+          top: {sm: 10, xs: 10},
+          right: {sm: 10, xs: -15}
+        }}
+      >
+        Leave
+      </Button>
+      {
+        (socket.id && chatConnected) ?
+        <Grid container={true} height="100vh">
+          <Grid item sm={4} xs={12}>
+            <ChatUsers socket={socket} />
+          </Grid>
+          <Grid item sm={8} xs={12} position="relative">
+            <ChatMessages socket={socket} />
+            <ChatFields socket={socket} />
+          </Grid>
+        </Grid>
+        : <LinearProgress />
+      }
+    </>
+  );
 };
 
 export default ChatRoom;

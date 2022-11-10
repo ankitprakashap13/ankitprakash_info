@@ -1,18 +1,19 @@
 import React from 'react';
-import { Box, Grid, Link, Typography } from "@mui/material";
+import { Box, Button, Fab, Grid, Link, Typography } from "@mui/material";
 import DescriptionIcon from '@mui/icons-material/Description';
 import { Stack } from "@mui/system";
-import ChatRoom from "./ChatRoom";
 import { Timeline, TimelineConnector, TimelineContent, TimelineDot, TimelineItem, TimelineSeparator } from "@mui/lab";
 
 const Home = () => {
-  return <Box sx={{
-    my: 0,
-    mx: 0,
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center'
-  }}>
+  return <Box
+    sx={{
+      my: 0,
+      mx: 0,
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center'
+    }}
+  >
     <Grid
       container
       direction="column"
@@ -153,7 +154,15 @@ const Home = () => {
         </Timeline>
       </Grid>
     </Grid>
-    <ChatRoom />
+    <Fab href='/chatroom' color="primary" variant="extended"
+      sx={{
+        position: 'fixed',
+        bottom: 16,
+        right: 16,
+      }}
+    >
+      Join Chatroom
+    </Fab>
   </Box>;
 };
 

@@ -1,13 +1,56 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   List,
   ListItem,
-  ListItemText
+  ListItemText,
+  Typography
 } from "@mui/material";
 
-const ChatMessages = ({messages}) => {
-  const userName = localStorage.getItem('userName');
+const ChatMessages = ({socket}) => {
+  const [messages, setMessages] = useState([]);
   const scrollRef = useRef(null);
+
+  useEffect(() => {
+    socket.on('messageResponse', (message, user) => setMessages([...messages, {message, user,  type: "user"}]));
+  }, [socket, messages]);
+
+  useEffect(() => {
+    socket.on(
+      'newUserResponse',
+      (allUsers, currentUser) => {
+        if (currentUser && currentUser.name) {
+          setMessages(
+            [
+              ...messages, 
+              {
+                message: (currentUser.socketId === socket.id) ? "You have joined" : `${currentUser.name} has joined`,
+                user: currentUser,
+                type: "admin",
+            }]
+          )
+        }
+      }
+    );
+  }, [socket, messages]);
+
+  useEffect(() => {
+    socket.on(
+      'disconnectResponse',
+      (allUsers, currentUser) => {
+        if (currentUser && currentUser.name) {
+          setMessages(
+            [
+              ...messages, 
+              {
+                message: (currentUser.socketId === socket.id) ? "You are disconnected" : `${currentUser.name} has left`,
+                user: currentUser,
+                type: "admin",
+            }]
+          )
+        }
+      }
+    );
+  }, [socket, messages]);
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -16,21 +59,24 @@ const ChatMessages = ({messages}) => {
   }, [messages]);
 
   return <List sx={{
-      minHeight: '20vh',
-      maxHeight: '50vh',
-      width: '380px',
       overflowY: 'auto'
     }}>
-    {messages && messages.map((message, index) => {
-      return <ListItem key={index}>
-        <ListItemText
-          primary={message.message}
-          secondary={message.name || 'Anynomous'}
-          align={(userName === message.name) ? "right" : "left"}
-          ref={messages.length - 1 === index ? scrollRef : null}
-        />
-      </ListItem>;
-    })}
+    {
+      (messages && messages.length) ?
+      messages.map((message, index) => {
+        return <ListItem key={index}>
+          <ListItemText
+            primary={message.message}
+            secondary={(message.type !== "admin") && (message.user ? message.user.name : 'Anynomous')}
+            align={
+              message.type === 'admin' ? "center" : ( (message.user && (socket.id === message.user.socketId)) ? "right" : "left")
+            }
+            ref={messages.length - 1 === index ? scrollRef : null}
+          />
+        </ListItem>;
+      }) :
+      <Typography align="center">Send some message</Typography>
+    }
   </List>;
 };
 
