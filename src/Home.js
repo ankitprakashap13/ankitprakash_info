@@ -19,7 +19,6 @@ const Home = () => {
       alignItems="center"
       justifyContent="center"
       style={{
-        minHeight: '50vh',
         color: '#fff',
         backgroundColor: `rgb(0 0 12)`,
       }}
@@ -29,10 +28,15 @@ const Home = () => {
         direction="column"
         alignItems="center"
         justifyContent="center"
-        style={{
-          height: '66vh',
+        sx={{
+          height: {
+            md: '66vh',
+            sm: '50vh',
+            xs: '35vh'
+          },
           color: 'rgb(255, 255, 255)',
-          position: 'relative'
+          position: 'relative',
+          backgroundPositionY: 'top'
         }}
         className="home-background"
       >
