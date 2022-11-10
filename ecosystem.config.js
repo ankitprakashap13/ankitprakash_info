@@ -14,7 +14,7 @@ module.exports = {
        "ref"  : "origin/main",
        "repo" : "git@github.com:ankitprakashap13/ankitprakash_info.git",
        "path" : "/var/www/ankitprakash_info",
-       "post-setup" : "npm install",
+       "post-setup" : "rm -rf /var/www/ankitprakash_info; npm install",
        "post-deploy" : "npm run build; pm2 startOrRestart ecosystem.config.js --env production",
     }
   }
