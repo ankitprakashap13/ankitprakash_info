@@ -46,7 +46,14 @@ const Home = () => {
           }}
         >
           <Typography variant="h5">Hi, I'm</Typography>
-          <Typography variant="h3" textAlign="center">ANKIT PRAKASH</Typography>
+          <Typography variant="h3" textAlign="center"
+            sx={{
+              fontSize: {
+                xs: 30,
+                sm: 50
+              }
+            }}
+          >ANKIT PRAKASH</Typography>
         </Stack>
       </Grid>
       <Grid
@@ -59,11 +66,10 @@ const Home = () => {
       >
         <Stack direction="column" spacing={2} alignItems="center">
           <Typography variant="h4" mb={5}>WHO AM I?</Typography>
-          <Typography variant="p" mt={10}>A well rounded Full Stack developer</Typography>
+          <Typography variant="p" mt={10}>A well rounded Full-stack developer</Typography>
           <Typography variant="p" mt={10}>AIML Enthusiast</Typography>
-          <Typography variant="p" mt={10}>A curious musician</Typography>
+          <Typography variant="p" mt={10}>A curious Musician</Typography>
           <Typography variant="p" mt={10}>A hardcore Gamer</Typography>
-          <Typography variant="p" mt={10}></Typography>
             
           <Typography variant="h6" padding={5}>Find out more <Link underline="none" rel="noopener" target="_blank" href="https://docs.google.com/document/d/1JqTxAiJqapYk-NC5dPnOgQGvhmhfsMA2nQRXpEU3lug/edit?usp=sharing" title="CV icons">
             <DescriptionIcon />

@@ -26,7 +26,7 @@ const ChatRoom = () => {
 
   const fab = {
     sx: {
-      position: 'absolute',
+      position: 'fixed',
       bottom: 16,
       right: 16
     }
@@ -55,7 +55,12 @@ const ChatRoom = () => {
   };
 
   return <Grid sx={fab.sx}>
-    <Card variant="elevation" elevation={24} square>
+    <Card
+      variant="elevation"
+      elevation={24}
+      square
+      
+    >
         {joinChatRoomButton &&
           <Fab
             variant="extended"
