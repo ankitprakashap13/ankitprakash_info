@@ -95,7 +95,7 @@ const Home = () => {
               <TimelineConnector />
             </TimelineSeparator>
             <TimelineContent>
-              <Typography><img height={30} src="tr.svg" /></Typography>
+              <Typography><img height={30} alt="Thomson Reuters" src="tr.svg" /></Typography>
             </TimelineContent>
           </TimelineItem>
           <TimelineItem>
@@ -104,7 +104,7 @@ const Home = () => {
               <TimelineConnector />
             </TimelineSeparator>
             <TimelineContent>
-              <Typography><img height={30} src="healthi_logo.png" /></Typography>
+              <Typography><img height={30} alt="Healthi" src="healthi_logo.png" /></Typography>
             </TimelineContent>
           </TimelineItem>
           <TimelineItem>
@@ -113,7 +113,7 @@ const Home = () => {
               <TimelineConnector />
             </TimelineSeparator>
             <TimelineContent>
-              <Typography><img height={30} src="poshvine-logo.png" /></Typography>
+              <Typography><img height={30} alt="Poshvine" src="poshvine-logo.png" /></Typography>
             </TimelineContent>
           </TimelineItem>
           <TimelineItem>

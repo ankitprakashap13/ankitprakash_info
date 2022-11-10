@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Card, Collapse, Fab, Grid, Slide, Switch, TextField } from '@mui/material';
+import { Button, Card, Collapse, Fab, Grid, Switch, TextField } from '@mui/material';
 import { Box, Stack } from '@mui/system';
 import { useEffect, useState } from 'react';
 import ChatFields from './ChatFields';

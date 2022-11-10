@@ -26,8 +26,8 @@ const ChatMessages = ({messages}) => {
         <ListItemText
           primary={message.message}
           secondary={message.name || 'Anynomous'}
-          align={(userName == message.name) ? "right" : "left"}
-          ref={messages.length - 1 == index ? scrollRef : null}
+          align={(userName === message.name) ? "right" : "left"}
+          ref={messages.length - 1 === index ? scrollRef : null}
         />
       </ListItem>;
     })}
