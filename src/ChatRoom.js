@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Grid, LinearProgress } from '@mui/material';
+import { Button, Container, Grid, LinearProgress } from '@mui/material';
 import ChatFields from './ChatFields';
 import ChatMessages from './ChatMessages';
 import socketIO from 'socket.io-client';
@@ -18,7 +18,7 @@ const ChatRoom = () => {
   }, [socket, chatConnected]);
 
   return (
-    <>
+    <Container maxWidth="lg">
       <Button
         href='/'
         variant="outlined" color="error"
@@ -33,8 +33,11 @@ const ChatRoom = () => {
       </Button>
       {
         (socket.id && chatConnected) ?
-        <Grid container={true} height="100vh">
-          <Grid item sm={4} xs={12}>
+        <Grid container={true} height="100vh" >
+          <Grid item sm={4} xs={12} sx={{
+              backgroundColor: "#f1f8e9",
+              boxShadow: "inset -1px 0px 4px 0px #333"
+            }}>
             <ChatUsers socket={socket} />
           </Grid>
           <Grid item sm={8} xs={12} position="relative">
@@ -44,7 +47,7 @@ const ChatRoom = () => {
         </Grid>
         : <LinearProgress />
       }
-    </>
+    </ Container>
   );
 };
 

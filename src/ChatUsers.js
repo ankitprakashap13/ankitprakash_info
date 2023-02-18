@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import { Box, Button, Stack, TextField } from "@mui/material";
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Stack, TextField } from "@mui/material";
 import TrendingFlatIcon from '@mui/icons-material/TrendingFlat';
 
 const ChatUsers = ({socket}) => {
   const [users, setUsers] = useState([]);
   const [showNameField, setShowNameField] = useState(true);
-
+  const [open, setOpen] = React.useState(true);
 
   useEffect(() => {
     socket.on(
@@ -56,31 +56,53 @@ const ChatUsers = ({socket}) => {
 
   return <>
     {showNameField &&
-      <Box
-        component="form"
-        noValidate
-        onSubmit={onUserSubmit}
-        padding={2}
+      <Dialog
+        fullScreen={"md"}
+        open={open}
+        onClose={() => setOpen(false)}
+        aria-labelledby="responsive-dialog-title"
       >
-        <Stack
-          direction="row"
-          spacing={1}
-        >
-          <TextField
-            fullWidth
-            name="userName"
-            label="Set your Name"
-            autoComplete="off"
-            autoFocus
-          />
-          <Button
-            type="submit"
-            variant="outlined"
+        <DialogTitle id="responsive-dialog-title">
+          {"Let users know who you are?"}
+        </DialogTitle>
+        <DialogContent>
+          <Box
+            component="form"
+            noValidate
+            onSubmit={onUserSubmit}
+            padding={2}
           >
-            <TrendingFlatIcon />
+            <Stack
+              direction="row"
+              spacing={1}
+            >
+              <TextField
+                fullWidth
+                name="userName"
+                label="Set your Name"
+                autoComplete="off"
+                autoFocus
+                sx={{
+                  backgroundColor: "#f1f8e9"
+                }}
+              />
+              <Button
+                type="submit"
+                variant="outlined"
+                onClick={() => setOpen(false)}
+              >
+                <TrendingFlatIcon />
+              </Button>
+            </Stack>
+          </Box>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setOpen(false)} autoFocus>
+            Continue without name
           </Button>
-        </Stack>
-      </Box>
+        </DialogActions>
+      </Dialog>
+      
     }
     {!showNameField && <DataGrid
       rows={users}

@@ -1,8 +1,38 @@
 import React from 'react';
-import { Box, Fab, Grid, Link, Typography } from "@mui/material";
+import { Avatar, Box, Fab, Grid, Link, Step, StepLabel, Stepper, Typography } from "@mui/material";
 import DescriptionIcon from '@mui/icons-material/Description';
 import { Stack } from "@mui/system";
-import { Timeline, TimelineConnector, TimelineContent, TimelineDot, TimelineItem, TimelineSeparator } from "@mui/lab";
+import { Timeline, TimelineConnector, TimelineContent, TimelineDot, TimelineItem, TimelineOppositeContent, TimelineSeparator } from "@mui/lab";
+
+const whoami = [
+  {text: "A Full-stack developer"},
+  {text: "An AIML Enthusiast"},
+  {text: "A curious Musician"},
+  {text: "A hardcore Gamer"}
+];
+
+const workOrganisations = [
+  {
+    name: "Thomson Reuters",
+    imagePath: "tr.svg",
+    exp: "Aug 2014 - Dec 2015 · 1 yr 5 mos"
+  },
+  {
+    name: "Healthi",
+    imagePath: "healthi_logo.png",
+    exp: "Jan 2016 - Jun 2018 · 2 yrs 6 mos"
+  },
+  {
+    name: "Poshvine",
+    imagePath: "poshvine-logo.png",
+    exp: "Jun 2018 - Nov 2020 · 2 yrs 6 mos"
+  },
+  {
+    name: "Oracle",
+    imagePath: "oracle.svg",
+    exp: "Nov 2020 - Present · 2 yrs 4 mos +"
+  }
+];
 
 const Home = () => {
   return <Box
@@ -78,11 +108,11 @@ const Home = () => {
               }
             }}
           >WHO AM I?</Typography>
-          <Typography variant="p" mt={10}>A well rounded Full-stack developer</Typography>
-          <Typography variant="p" mt={10}>AIML Enthusiast</Typography>
-          <Typography variant="p" mt={10}>A curious Musician</Typography>
-          <Typography variant="p" mt={10}>A hardcore Gamer</Typography>
-            
+          {
+            whoami && whoami.map(text => (
+              <Typography variant="p" mt={10}>{text.text}</Typography>
+            ))
+          }
           <Typography variant="h6" padding={5}>Find out more <Link underline="none" rel="noopener" target="_blank" href="https://docs.google.com/document/d/1JqTxAiJqapYk-NC5dPnOgQGvhmhfsMA2nQRXpEU3lug/edit?usp=sharing" title="CV icons">
             <DescriptionIcon />
             <span>Resume</span>
@@ -113,45 +143,40 @@ const Home = () => {
         justifyContent="center"
         mt={10}
       >
-        <Timeline position="alternate">
-          <TimelineItem>
-            <TimelineSeparator>
-              <TimelineDot />
-              <TimelineConnector />
-            </TimelineSeparator>
-            <TimelineContent>
-              <Typography><img width={120} alt="Thomson Reuters" src="tr.svg" /></Typography>
-            </TimelineContent>
-          </TimelineItem>
-          <TimelineItem>
-            <TimelineSeparator>
-              <TimelineDot />
-              <TimelineConnector />
-            </TimelineSeparator>
-            <TimelineContent>
-              <Typography><img width={120} alt="Healthi" src="healthi_logo.png" /></Typography>
-            </TimelineContent>
-          </TimelineItem>
-          <TimelineItem>
-            <TimelineSeparator>
-              <TimelineDot />
-              <TimelineConnector />
-            </TimelineSeparator>
-            <TimelineContent>
-              <Typography><img width={120} alt="Poshvine" src="poshvine-logo.png" /></Typography>
-            </TimelineContent>
-          </TimelineItem>
-          <TimelineItem>
-            <TimelineSeparator>
-              <TimelineDot color='success' />
-            </TimelineSeparator>
-            <TimelineContent>
-              <Typography>
-                  <svg width={120} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 231 30" preserveAspectRatio="xMinYMid"><path d="M99.61,19.52h15.24l-8.05-13L92,30H85.27l18-28.17a4.29,4.29,0,0,1,7-.05L128.32,30h-6.73l-3.17-5.25H103l-3.36-5.23m69.93,5.23V0.28h-5.72V27.16a2.76,2.76,0,0,0,.85,2,2.89,2.89,0,0,0,2.08.87h26l3.39-5.25H169.54M75,20.38A10,10,0,0,0,75,.28H50V30h5.71V5.54H74.65a4.81,4.81,0,0,1,0,9.62H58.54L75.6,30h8.29L72.43,20.38H75M14.88,30H32.15a14.86,14.86,0,0,0,0-29.71H14.88a14.86,14.86,0,1,0,0,29.71m16.88-5.23H15.26a9.62,9.62,0,0,1,0-19.23h16.5a9.62,9.62,0,1,1,0,19.23M140.25,30h17.63l3.34-5.23H140.64a9.62,9.62,0,1,1,0-19.23h16.75l3.38-5.25H140.25a14.86,14.86,0,1,0,0,29.71m69.87-5.23a9.62,9.62,0,0,1-9.26-7h24.42l3.36-5.24H200.86a9.61,9.61,0,0,1,9.26-7h16.76l3.35-5.25h-20.5a14.86,14.86,0,0,0,0,29.71h17.63l3.35-5.23h-20.6"></path></svg>
-              </Typography>
-            </TimelineContent>
-          </TimelineItem>
+        <Timeline position="left">
+          {workOrganisations && workOrganisations.map((item, index) => (
+            <TimelineItem>
+              <TimelineOppositeContent
+                color="text.secondary"
+              >
+                <Typography sx={{ fontSize: {xs: 12, sm: 12} }}>{item.exp}</Typography>
+              </TimelineOppositeContent>
+              <TimelineSeparator>
+                <TimelineDot />
+                {(workOrganisations.length - 1) !== index &&
+                  <TimelineConnector />
+                }
+              </TimelineSeparator>
+              <TimelineContent>
+                <Typography><img height={25} alt={item.name} src={item.imagePath} /></Typography>
+              </TimelineContent>
+            </TimelineItem>
+          ))}
         </Timeline>
+      </Grid>
+      <Grid
+        container
+        direction="column"
+        alignItems="center"
+        justifyContent="center"
+        mt={10}
+        mb={15}
+        style={{
+          color: '#fff',
+          backgroundColor: `rgb(0 0 12)`,
+        }}
+      >
+        <iframe src="https://player.twitch.tv/?channel=awol_ic1101&parent=ankitprakash.info" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>
       </Grid>
     </Grid>
     <Fab href='/chatroom' color="primary" variant="extended"
