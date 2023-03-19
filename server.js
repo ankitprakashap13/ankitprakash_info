@@ -11,7 +11,7 @@ const server = require('http').Server(app);
 const socketIO = require('socket.io')(server, {
   path: '/chatsocket',
   cors: {
-    origin: ["http://localhost:3000", "https://ankitprakash.info"]
+    origin: ["http://localhost:3000", "https://ankitprakash.online"]
   }
 });
 

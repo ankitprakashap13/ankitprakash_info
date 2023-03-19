@@ -176,7 +176,10 @@ const Home = () => {
           backgroundColor: `rgb(0 0 12)`,
         }}
       >
-        <iframe src="https://player.twitch.tv/?channel=awol_ic1101&parent=ankitprakash.info" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>
+        <Stack direction="column" spacing={2} alignItems="center">
+          Watch me on twitch
+        </Stack>
+        <iframe src="https://player.twitch.tv/?channel=awol_ic1101&parent=ankitprakash.online" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>
       </Grid>
     </Grid>
     <Fab href='/chatroom' color="primary" variant="extended"
